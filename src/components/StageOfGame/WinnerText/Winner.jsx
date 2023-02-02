@@ -2,7 +2,7 @@ import React from 'react';
 
 import cl from './Winner.module.css';
 
-const Winner = ({winner, symbols, setBoard}) => {
+const Winner = ({winner, symbols, setBoard, orderWinRef}) => {
 
     let text = ''
     
@@ -16,6 +16,7 @@ const Winner = ({winner, symbols, setBoard}) => {
     
  
     setTimeout(() => {
+        orderWinRef.current = []
         setBoard(Array(9).fill(null))
     }, 2500)
     return (

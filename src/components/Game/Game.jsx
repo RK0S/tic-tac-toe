@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import cl from './Game.module.css';
 import Center from './../Center/Center';
@@ -7,6 +7,7 @@ import { calculateWinner } from './../../functions/calculateWinner';
 
 const Game = () => {
     const [board, setBoard] = useState(Array(9).fill(null));
+    const orderWinRef = useRef([])
     const [symbols, setSymbols] = useState({
         first: 'cross',
         second: 'circle',
@@ -18,7 +19,7 @@ const Game = () => {
         tie: 0,
     });
 
-    const winner = calculateWinner(board);
+    const winner = calculateWinner(board, orderWinRef);
 
     useMemo(() => {
         if (winner === symbols.first) {
@@ -43,6 +44,7 @@ const Game = () => {
                 board={board}
                 setBoard={setBoard}
                 scores={scores}
+                orderWinRef={orderWinRef}
             />
             <PlayerInfo
                 symbol={symbols.second}

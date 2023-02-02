@@ -5,7 +5,7 @@ import Board from './../Board/Board';
 import StageOfGame from '../StageOfGame/StageOfGame';
 import Tie from './../Tie/Tie';
 
-const Center = ({symbols, winner, board, setBoard, scores}) => {
+const Center = ({symbols, winner, board, setBoard, scores, orderWinRef}) => {
     const [firstPlayerTurn, setFirstPlayerTurn] = useState(true)
 
     const handleClick = (index) => {
@@ -21,8 +21,8 @@ const Center = ({symbols, winner, board, setBoard, scores}) => {
 
     return (
         <div className={cl.center}>
-            <StageOfGame winner={winner} setBoard={setBoard} firstPlayerTurn={firstPlayerTurn} symbols={symbols}/>
-            <Board squares={board} click={handleClick} />
+            <StageOfGame winner={winner} orderWinRef={orderWinRef} setBoard={setBoard} firstPlayerTurn={firstPlayerTurn} symbols={symbols}/>
+            <Board squares={board} click={handleClick} orderWinRef={orderWinRef} />
             <Tie score={scores.tie} />
         </div>
     );
