@@ -3,13 +3,7 @@
     width: 100%;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-around;
     padding-top: 150px;
-}
-
-.whosturn {
-    margin-bottom: 35px;
-    font-size: 16px;
-    color: #230d06;
 }

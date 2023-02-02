@@ -1,41 +1,54 @@
-import { useState } from 'react';
-import Board from '../Board/Board';
+import { useMemo, useState } from 'react';
 
 import cl from './Game.module.css';
+import Center from './../Center/Center';
+import PlayerInfo from '../PlayerInfo/PlayerInfo';
 import { calculateWinner } from './../../functions/calculateWinner';
-import WinModal from '../WinModal/WinModal';
 
 const Game = () => {
-    const [board, setBoard] = useState(Array(9).fill(null))
-    const [firstPlayerTurn, setFirstPlayerTurn] = useState(true)
+    const [board, setBoard] = useState(Array(9).fill(null));
     const [symbols, setSymbols] = useState({
         first: 'cross',
-        second: 'circle'
+        second: 'circle',
     });
-    const winner = calculateWinner(board)
 
-    const handleClick = (index) => {
-        const boardCopy = [...board]
+    const [scores, setScores] = useState({
+        first: 0,
+        second: 0,
+        tie: 0,
+    });
 
-        if (winner || boardCopy[index]) return 
+    const winner = calculateWinner(board);
 
-        boardCopy[index] = firstPlayerTurn ? symbols.first : symbols.second
-
-        setBoard(boardCopy)
-        setFirstPlayerTurn(!firstPlayerTurn)
-    }
-
+    useMemo(() => {
+        if (winner === symbols.first) {
+            setScores({ ...scores, first: scores.first + 1 });
+        } else if (winner === symbols.second) {
+            setScores({ ...scores, second: scores.second + 1 });
+        } else if (winner === 'tie') {
+            setScores({ ...scores, tie: scores.tie + 1 });
+        }
+    }, [winner]);
 
     return (
         <div className={cl.wrapper}>
-            <p className={cl.whosturn}>
-                {firstPlayerTurn
-                    ? `Ходит первый игрок`
-                    : `Ходит второй игрок`
-                }
-            </p>
-            <Board squares={board} click={handleClick} />
-            <WinModal winner={winner} reset={setBoard}/>
+            <PlayerInfo
+                symbol={symbols.first}
+                player="Первый"
+                score={scores.first}
+            />
+            <Center
+                symbols={symbols}
+                winner={winner}
+                board={board}
+                setBoard={setBoard}
+                scores={scores}
+            />
+            <PlayerInfo
+                symbol={symbols.second}
+                player="Второй"
+                score={scores.second}
+            />
         </div>
     );
 };

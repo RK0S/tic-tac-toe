@@ -1,0 +1,39 @@
+.playerInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #230D06;
+}
+
+.player__logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 45px;
+}
+
+.player__logo img{
+    margin-bottom: 10px;
+    height: 100px;
+    width: 100px;
+}
+
+.score__wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h3 {
+    font-size: 19px;
+}
+
+.symbol {
+    margin-bottom: 45px;
+}
+
+.h2 {
+    margin-top: 1px;
+    font-size: 36px;
+    line-height: 49px;
+}
