@@ -1,0 +1,49 @@
+.start__wrapper {
+    background: #fff0ec;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.settings__wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff0ec;
+    box-shadow: 0px 0px 11px #c2836f;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    width: 850px;
+    height: 450px;
+    padding: 50px 100px;
+}
+
+.player__settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player__settings h3 {
+    font-size: 19px;
+    color: #230d06;
+    margin-bottom: 45px;
+}
+
+.link {
+    display: flex;
+    align-items: flex-end;
+}
+
+.btn {
+    text-align: center;
+    min-width: 100px;
+    height: 50px;
+    padding: 10px 25px;
+    border: 2px solid #C2836F;
+    border-radius: 10px;
+    font-size: 23px;
+    background: #C2836F;
+    color: #fff0ec;
+}

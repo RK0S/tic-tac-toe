@@ -2,11 +2,11 @@ import React from 'react';
 
 import cl from './PlayerInfo.module.css';
 
-const PlayerInfo = ({symbol, player, score}) => {
+const PlayerInfo = ({symbol, player, score, icon}) => {
     return (
         <div className={cl.playerInfo}>
             <div className={cl.player__logo}>
-                <img src={require("../../img/icons/bear.png")} alt="bear" />
+                <img src={require(`../../img/icons/${icon}.png`)} alt={icon} />
                 <h3 className={cl.h3}>{player} игрок</h3>
             </div>
             <div className={cl.symbol}>

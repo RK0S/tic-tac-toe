@@ -1,17 +1,13 @@
 import { useMemo, useRef, useState } from 'react';
 
 import cl from './Game.module.css';
-import Center from './../Center/Center';
-import PlayerInfo from '../PlayerInfo/PlayerInfo';
-import { calculateWinner } from './../../functions/calculateWinner';
+import Center from '../../components/Center/Center';
+import PlayerInfo from '../../components/PlayerInfo/PlayerInfo';
+import { calculateWinner } from '../../functions/calculateWinner';
 
-const Game = () => {
+const Game = ({symbol, icon, setIcon, setSymbol}) => {
     const [board, setBoard] = useState(Array(9).fill(null));
     const orderWinRef = useRef([])
-    const [symbols, setSymbols] = useState({
-        first: 'cross',
-        second: 'circle',
-    });
 
     const [scores, setScores] = useState({
         first: 0,
@@ -22,9 +18,9 @@ const Game = () => {
     const winner = calculateWinner(board, orderWinRef);
 
     useMemo(() => {
-        if (winner === symbols.first) {
+        if (winner === symbol.first) {
             setScores({ ...scores, first: scores.first + 1 });
-        } else if (winner === symbols.second) {
+        } else if (winner === symbol.second) {
             setScores({ ...scores, second: scores.second + 1 });
         } else if (winner === 'tie') {
             setScores({ ...scores, tie: scores.tie + 1 });
@@ -34,22 +30,26 @@ const Game = () => {
     return (
         <div className={cl.wrapper}>
             <PlayerInfo
-                symbol={symbols.first}
+                symbol={symbol.first}
                 player="Первый"
                 score={scores.first}
+                icon={icon.first}
             />
             <Center
-                symbols={symbols}
+                symbols={symbol}
                 winner={winner}
                 board={board}
                 setBoard={setBoard}
                 scores={scores}
                 orderWinRef={orderWinRef}
+                setIcon={setIcon}
+                setSymbol={setSymbol}
             />
             <PlayerInfo
-                symbol={symbols.second}
+                symbol={symbol.second}
                 player="Второй"
                 score={scores.second}
+                icon={icon.second}
             />
         </div>
     );
